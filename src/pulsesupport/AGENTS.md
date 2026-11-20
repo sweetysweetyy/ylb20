@@ -1,0 +1,1 @@
+- PulseSupport: src/pulsesupport, URL /pulsesupport/*, public call page /pulsesupport-call/$agentId, `pst_` tables via `pst()`, `.pulsesupport-theme`; voice WebSocket at /api/pulsesupport-live (src/server.ts + root dev plugin), AI via resolveAppAiModel("pulsesupport").

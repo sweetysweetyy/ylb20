@@ -39,6 +39,7 @@ import { Route as AuthenticatedPascalRouteRouteImport } from './routes/_authenti
 import { Route as AuthenticatedPlanningRouteImport } from './routes/_authenticated/planning'
 import { Route as AuthenticatedProspectRouteRouteImport } from './routes/_authenticated/prospect/route'
 import { Route as AuthenticatedPulseRouteRouteImport } from './routes/_authenticated/pulse/route'
+import { Route as AuthenticatedPulsesupportRouteRouteImport } from './routes/_authenticated/pulsesupport/route'
 import { Route as AuthenticatedSettingsRouteImport } from './routes/_authenticated/settings'
 import { Route as AuthenticatedSkyachatRouteImport } from './routes/_authenticated/skyachat'
 import { Route as AuthenticatedSkycomptableRouteRouteImport } from './routes/_authenticated/skycomptable/route'
@@ -54,6 +55,7 @@ import { Route as CalendskyIndexRouteImport } from './routes/calendsky.index'
 import { Route as CalendskyPlanningRouteImport } from './routes/calendsky.planning'
 import { Route as ImmoBienIdRouteImport } from './routes/immo-bien.$id'
 import { Route as PascalGoogleCallbackRouteImport } from './routes/pascal-google.callback'
+import { Route as PulsesupportCallAgentIdRouteImport } from './routes/pulsesupport-call.$agentId'
 import { Route as QueueflowQSlugRouteImport } from './routes/queueflow-q.$slug'
 import { Route as QueueflowTicketEntryIdRouteImport } from './routes/queueflow-ticket.$entryId'
 import { Route as STokenRouteImport } from './routes/s.$token'
@@ -192,6 +194,8 @@ import { Route as AuthenticatedProspectSearchRouteImport } from './routes/_authe
 import { Route as AuthenticatedProspectSettingsRouteImport } from './routes/_authenticated/prospect/settings'
 import { Route as AuthenticatedPulseIndexRouteImport } from './routes/_authenticated/pulse/index'
 import { Route as AuthenticatedPulseConnexionRouteImport } from './routes/_authenticated/pulse/connexion'
+import { Route as AuthenticatedPulsesupportIndexRouteImport } from './routes/_authenticated/pulsesupport/index'
+import { Route as AuthenticatedPulsesupportDashboardRouteImport } from './routes/_authenticated/pulsesupport/dashboard'
 import { Route as AuthenticatedQueueflowIndexRouteImport } from './routes/_authenticated/queueflow/index'
 import { Route as AuthenticatedQueueflowDashboardRouteImport } from './routes/_authenticated/queueflow/dashboard'
 import { Route as AuthenticatedSendyIndexRouteImport } from './routes/_authenticated/sendy.index'
@@ -455,6 +459,12 @@ const AuthenticatedPulseRouteRoute = AuthenticatedPulseRouteRouteImport.update({
   path: '/pulse',
   getParentRoute: () => AuthenticatedRouteRoute,
 } as any)
+const AuthenticatedPulsesupportRouteRoute =
+  AuthenticatedPulsesupportRouteRouteImport.update({
+    id: '/pulsesupport',
+    path: '/pulsesupport',
+    getParentRoute: () => AuthenticatedRouteRoute,
+  } as any)
 const AuthenticatedSettingsRoute = AuthenticatedSettingsRouteImport.update({
   id: '/settings',
   path: '/settings',
@@ -531,6 +541,11 @@ const ImmoBienIdRoute = ImmoBienIdRouteImport.update({
 const PascalGoogleCallbackRoute = PascalGoogleCallbackRouteImport.update({
   id: '/pascal-google/callback',
   path: '/pascal-google/callback',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PulsesupportCallAgentIdRoute = PulsesupportCallAgentIdRouteImport.update({
+  id: '/pulsesupport-call/$agentId',
+  path: '/pulsesupport-call/$agentId',
   getParentRoute: () => rootRouteImport,
 } as any)
 const QueueflowQSlugRoute = QueueflowQSlugRouteImport.update({
@@ -1324,6 +1339,18 @@ const AuthenticatedPulseConnexionRoute =
     path: '/connexion',
     getParentRoute: () => AuthenticatedPulseRouteRoute,
   } as any)
+const AuthenticatedPulsesupportIndexRoute =
+  AuthenticatedPulsesupportIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedPulsesupportRouteRoute,
+  } as any)
+const AuthenticatedPulsesupportDashboardRoute =
+  AuthenticatedPulsesupportDashboardRouteImport.update({
+    id: '/dashboard',
+    path: '/dashboard',
+    getParentRoute: () => AuthenticatedPulsesupportRouteRoute,
+  } as any)
 const AuthenticatedQueueflowIndexRoute =
   AuthenticatedQueueflowIndexRouteImport.update({
     id: '/queueflow/',
@@ -1944,6 +1971,7 @@ export interface FileRoutesByFullPath {
   '/pascal': typeof AuthenticatedPascalRouteRouteWithChildren
   '/prospect': typeof AuthenticatedProspectRouteRouteWithChildren
   '/pulse': typeof AuthenticatedPulseRouteRouteWithChildren
+  '/pulsesupport': typeof AuthenticatedPulsesupportRouteRouteWithChildren
   '/skycomptable': typeof AuthenticatedSkycomptableRouteRouteWithChildren
   '/studioproduit': typeof AuthenticatedStudioproduitRouteRouteWithChildren
   '/angelo': typeof AuthenticatedAngeloRouteWithChildren
@@ -1966,6 +1994,7 @@ export interface FileRoutesByFullPath {
   '/calendsky/planning': typeof CalendskyPlanningRoute
   '/immo-bien/$id': typeof ImmoBienIdRoute
   '/pascal-google/callback': typeof PascalGoogleCallbackRoute
+  '/pulsesupport-call/$agentId': typeof PulsesupportCallAgentIdRoute
   '/queueflow-q/$slug': typeof QueueflowQSlugRoute
   '/queueflow-ticket/$entryId': typeof QueueflowTicketEntryIdRoute
   '/s/$token': typeof STokenRoute
@@ -2083,6 +2112,7 @@ export interface FileRoutesByFullPath {
   '/prospect/search': typeof AuthenticatedProspectSearchRoute
   '/prospect/settings': typeof AuthenticatedProspectSettingsRoute
   '/pulse/connexion': typeof AuthenticatedPulseConnexionRoute
+  '/pulsesupport/dashboard': typeof AuthenticatedPulsesupportDashboardRoute
   '/queueflow/dashboard': typeof AuthenticatedQueueflowDashboardRoute
   '/sendy/settings': typeof AuthenticatedSendySettingsRoute
   '/sky/cloud': typeof AuthenticatedSkyCloudRoute
@@ -2142,6 +2172,7 @@ export interface FileRoutesByFullPath {
   '/pascal/': typeof AuthenticatedPascalIndexRoute
   '/prospect/': typeof AuthenticatedProspectIndexRoute
   '/pulse/': typeof AuthenticatedPulseIndexRoute
+  '/pulsesupport/': typeof AuthenticatedPulsesupportIndexRoute
   '/queueflow/': typeof AuthenticatedQueueflowIndexRoute
   '/sendy/': typeof AuthenticatedSendyIndexRoute
   '/skyachat/': typeof AuthenticatedSkyachatIndexRoute
@@ -2228,6 +2259,7 @@ export interface FileRoutesByTo {
   '/calendsky/planning': typeof CalendskyPlanningRoute
   '/immo-bien/$id': typeof ImmoBienIdRoute
   '/pascal-google/callback': typeof PascalGoogleCallbackRoute
+  '/pulsesupport-call/$agentId': typeof PulsesupportCallAgentIdRoute
   '/queueflow-q/$slug': typeof QueueflowQSlugRoute
   '/queueflow-ticket/$entryId': typeof QueueflowTicketEntryIdRoute
   '/s/$token': typeof STokenRoute
@@ -2344,6 +2376,7 @@ export interface FileRoutesByTo {
   '/prospect/search': typeof AuthenticatedProspectSearchRoute
   '/prospect/settings': typeof AuthenticatedProspectSettingsRoute
   '/pulse/connexion': typeof AuthenticatedPulseConnexionRoute
+  '/pulsesupport/dashboard': typeof AuthenticatedPulsesupportDashboardRoute
   '/queueflow/dashboard': typeof AuthenticatedQueueflowDashboardRoute
   '/sendy/settings': typeof AuthenticatedSendySettingsRoute
   '/sky/cloud': typeof AuthenticatedSkyCloudRoute
@@ -2403,6 +2436,7 @@ export interface FileRoutesByTo {
   '/pascal': typeof AuthenticatedPascalIndexRoute
   '/prospect': typeof AuthenticatedProspectIndexRoute
   '/pulse': typeof AuthenticatedPulseIndexRoute
+  '/pulsesupport': typeof AuthenticatedPulsesupportIndexRoute
   '/queueflow': typeof AuthenticatedQueueflowIndexRoute
   '/sendy': typeof AuthenticatedSendyIndexRoute
   '/skyachat': typeof AuthenticatedSkyachatIndexRoute
@@ -2492,6 +2526,7 @@ export interface FileRoutesById {
   '/_authenticated/pascal': typeof AuthenticatedPascalRouteRouteWithChildren
   '/_authenticated/prospect': typeof AuthenticatedProspectRouteRouteWithChildren
   '/_authenticated/pulse': typeof AuthenticatedPulseRouteRouteWithChildren
+  '/_authenticated/pulsesupport': typeof AuthenticatedPulsesupportRouteRouteWithChildren
   '/_authenticated/skycomptable': typeof AuthenticatedSkycomptableRouteRouteWithChildren
   '/_authenticated/studioproduit': typeof AuthenticatedStudioproduitRouteRouteWithChildren
   '/_authenticated/_memotrack': typeof AuthenticatedMemotrackRouteWithChildren
@@ -2515,6 +2550,7 @@ export interface FileRoutesById {
   '/calendsky/planning': typeof CalendskyPlanningRoute
   '/immo-bien/$id': typeof ImmoBienIdRoute
   '/pascal-google/callback': typeof PascalGoogleCallbackRoute
+  '/pulsesupport-call/$agentId': typeof PulsesupportCallAgentIdRoute
   '/queueflow-q/$slug': typeof QueueflowQSlugRoute
   '/queueflow-ticket/$entryId': typeof QueueflowTicketEntryIdRoute
   '/s/$token': typeof STokenRoute
@@ -2633,6 +2669,7 @@ export interface FileRoutesById {
   '/_authenticated/prospect/search': typeof AuthenticatedProspectSearchRoute
   '/_authenticated/prospect/settings': typeof AuthenticatedProspectSettingsRoute
   '/_authenticated/pulse/connexion': typeof AuthenticatedPulseConnexionRoute
+  '/_authenticated/pulsesupport/dashboard': typeof AuthenticatedPulsesupportDashboardRoute
   '/_authenticated/queueflow/dashboard': typeof AuthenticatedQueueflowDashboardRoute
   '/_authenticated/sendy/settings': typeof AuthenticatedSendySettingsRoute
   '/_authenticated/sky/cloud': typeof AuthenticatedSkyCloudRoute
@@ -2692,6 +2729,7 @@ export interface FileRoutesById {
   '/_authenticated/pascal/': typeof AuthenticatedPascalIndexRoute
   '/_authenticated/prospect/': typeof AuthenticatedProspectIndexRoute
   '/_authenticated/pulse/': typeof AuthenticatedPulseIndexRoute
+  '/_authenticated/pulsesupport/': typeof AuthenticatedPulsesupportIndexRoute
   '/_authenticated/queueflow/': typeof AuthenticatedQueueflowIndexRoute
   '/_authenticated/sendy/': typeof AuthenticatedSendyIndexRoute
   '/_authenticated/skyachat/': typeof AuthenticatedSkyachatIndexRoute
@@ -2781,6 +2819,7 @@ export interface FileRouteTypes {
     | '/pascal'
     | '/prospect'
     | '/pulse'
+    | '/pulsesupport'
     | '/skycomptable'
     | '/studioproduit'
     | '/angelo'
@@ -2803,6 +2842,7 @@ export interface FileRouteTypes {
     | '/calendsky/planning'
     | '/immo-bien/$id'
     | '/pascal-google/callback'
+    | '/pulsesupport-call/$agentId'
     | '/queueflow-q/$slug'
     | '/queueflow-ticket/$entryId'
     | '/s/$token'
@@ -2920,6 +2960,7 @@ export interface FileRouteTypes {
     | '/prospect/search'
     | '/prospect/settings'
     | '/pulse/connexion'
+    | '/pulsesupport/dashboard'
     | '/queueflow/dashboard'
     | '/sendy/settings'
     | '/sky/cloud'
@@ -2979,6 +3020,7 @@ export interface FileRouteTypes {
     | '/pascal/'
     | '/prospect/'
     | '/pulse/'
+    | '/pulsesupport/'
     | '/queueflow/'
     | '/sendy/'
     | '/skyachat/'
@@ -3065,6 +3107,7 @@ export interface FileRouteTypes {
     | '/calendsky/planning'
     | '/immo-bien/$id'
     | '/pascal-google/callback'
+    | '/pulsesupport-call/$agentId'
     | '/queueflow-q/$slug'
     | '/queueflow-ticket/$entryId'
     | '/s/$token'
@@ -3181,6 +3224,7 @@ export interface FileRouteTypes {
     | '/prospect/search'
     | '/prospect/settings'
     | '/pulse/connexion'
+    | '/pulsesupport/dashboard'
     | '/queueflow/dashboard'
     | '/sendy/settings'
     | '/sky/cloud'
@@ -3240,6 +3284,7 @@ export interface FileRouteTypes {
     | '/pascal'
     | '/prospect'
     | '/pulse'
+    | '/pulsesupport'
     | '/queueflow'
     | '/sendy'
     | '/skyachat'
@@ -3328,6 +3373,7 @@ export interface FileRouteTypes {
     | '/_authenticated/pascal'
     | '/_authenticated/prospect'
     | '/_authenticated/pulse'
+    | '/_authenticated/pulsesupport'
     | '/_authenticated/skycomptable'
     | '/_authenticated/studioproduit'
     | '/_authenticated/_memotrack'
@@ -3351,6 +3397,7 @@ export interface FileRouteTypes {
     | '/calendsky/planning'
     | '/immo-bien/$id'
     | '/pascal-google/callback'
+    | '/pulsesupport-call/$agentId'
     | '/queueflow-q/$slug'
     | '/queueflow-ticket/$entryId'
     | '/s/$token'
@@ -3469,6 +3516,7 @@ export interface FileRouteTypes {
     | '/_authenticated/prospect/search'
     | '/_authenticated/prospect/settings'
     | '/_authenticated/pulse/connexion'
+    | '/_authenticated/pulsesupport/dashboard'
     | '/_authenticated/queueflow/dashboard'
     | '/_authenticated/sendy/settings'
     | '/_authenticated/sky/cloud'
@@ -3528,6 +3576,7 @@ export interface FileRouteTypes {
     | '/_authenticated/pascal/'
     | '/_authenticated/prospect/'
     | '/_authenticated/pulse/'
+    | '/_authenticated/pulsesupport/'
     | '/_authenticated/queueflow/'
     | '/_authenticated/sendy/'
     | '/_authenticated/skyachat/'
@@ -3608,6 +3657,7 @@ export interface RootRouteChildren {
   CalendskyPlanningRoute: typeof CalendskyPlanningRoute
   ImmoBienIdRoute: typeof ImmoBienIdRoute
   PascalGoogleCallbackRoute: typeof PascalGoogleCallbackRoute
+  PulsesupportCallAgentIdRoute: typeof PulsesupportCallAgentIdRoute
   QueueflowQSlugRoute: typeof QueueflowQSlugRoute
   QueueflowTicketEntryIdRoute: typeof QueueflowTicketEntryIdRoute
   STokenRoute: typeof STokenRoute
@@ -3856,6 +3906,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPulseRouteRouteImport
       parentRoute: typeof AuthenticatedRouteRoute
     }
+    '/_authenticated/pulsesupport': {
+      id: '/_authenticated/pulsesupport'
+      path: '/pulsesupport'
+      fullPath: '/pulsesupport'
+      preLoaderRoute: typeof AuthenticatedPulsesupportRouteRouteImport
+      parentRoute: typeof AuthenticatedRouteRoute
+    }
     '/_authenticated/settings': {
       id: '/_authenticated/settings'
       path: '/settings'
@@ -3959,6 +4016,13 @@ declare module '@tanstack/react-router' {
       path: '/pascal-google/callback'
       fullPath: '/pascal-google/callback'
       preLoaderRoute: typeof PascalGoogleCallbackRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pulsesupport-call/$agentId': {
+      id: '/pulsesupport-call/$agentId'
+      path: '/pulsesupport-call/$agentId'
+      fullPath: '/pulsesupport-call/$agentId'
+      preLoaderRoute: typeof PulsesupportCallAgentIdRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/queueflow-q/$slug': {
@@ -4926,6 +4990,20 @@ declare module '@tanstack/react-router' {
       fullPath: '/pulse/connexion'
       preLoaderRoute: typeof AuthenticatedPulseConnexionRouteImport
       parentRoute: typeof AuthenticatedPulseRouteRoute
+    }
+    '/_authenticated/pulsesupport/': {
+      id: '/_authenticated/pulsesupport/'
+      path: '/'
+      fullPath: '/pulsesupport/'
+      preLoaderRoute: typeof AuthenticatedPulsesupportIndexRouteImport
+      parentRoute: typeof AuthenticatedPulsesupportRouteRoute
+    }
+    '/_authenticated/pulsesupport/dashboard': {
+      id: '/_authenticated/pulsesupport/dashboard'
+      path: '/dashboard'
+      fullPath: '/pulsesupport/dashboard'
+      preLoaderRoute: typeof AuthenticatedPulsesupportDashboardRouteImport
+      parentRoute: typeof AuthenticatedPulsesupportRouteRoute
     }
     '/_authenticated/queueflow/': {
       id: '/_authenticated/queueflow/'
@@ -6106,6 +6184,23 @@ const AuthenticatedPulseRouteRouteWithChildren =
     AuthenticatedPulseRouteRouteChildren,
   )
 
+interface AuthenticatedPulsesupportRouteRouteChildren {
+  AuthenticatedPulsesupportDashboardRoute: typeof AuthenticatedPulsesupportDashboardRoute
+  AuthenticatedPulsesupportIndexRoute: typeof AuthenticatedPulsesupportIndexRoute
+}
+
+const AuthenticatedPulsesupportRouteRouteChildren: AuthenticatedPulsesupportRouteRouteChildren =
+  {
+    AuthenticatedPulsesupportDashboardRoute:
+      AuthenticatedPulsesupportDashboardRoute,
+    AuthenticatedPulsesupportIndexRoute: AuthenticatedPulsesupportIndexRoute,
+  }
+
+const AuthenticatedPulsesupportRouteRouteWithChildren =
+  AuthenticatedPulsesupportRouteRoute._addFileChildren(
+    AuthenticatedPulsesupportRouteRouteChildren,
+  )
+
 interface AuthenticatedSkycomptableRouteRouteChildren {
   AuthenticatedSkycomptableBalanceRoute: typeof AuthenticatedSkycomptableBalanceRoute
   AuthenticatedSkycomptableBanqueRoute: typeof AuthenticatedSkycomptableBanqueRoute
@@ -6347,6 +6442,7 @@ interface AuthenticatedRouteRouteChildren {
   AuthenticatedPascalRouteRoute: typeof AuthenticatedPascalRouteRouteWithChildren
   AuthenticatedProspectRouteRoute: typeof AuthenticatedProspectRouteRouteWithChildren
   AuthenticatedPulseRouteRoute: typeof AuthenticatedPulseRouteRouteWithChildren
+  AuthenticatedPulsesupportRouteRoute: typeof AuthenticatedPulsesupportRouteRouteWithChildren
   AuthenticatedSkycomptableRouteRoute: typeof AuthenticatedSkycomptableRouteRouteWithChildren
   AuthenticatedStudioproduitRouteRoute: typeof AuthenticatedStudioproduitRouteRouteWithChildren
   AuthenticatedMemotrackRoute: typeof AuthenticatedMemotrackRouteWithChildren
@@ -6402,6 +6498,8 @@ const AuthenticatedRouteRouteChildren: AuthenticatedRouteRouteChildren = {
   AuthenticatedPascalRouteRoute: AuthenticatedPascalRouteRouteWithChildren,
   AuthenticatedProspectRouteRoute: AuthenticatedProspectRouteRouteWithChildren,
   AuthenticatedPulseRouteRoute: AuthenticatedPulseRouteRouteWithChildren,
+  AuthenticatedPulsesupportRouteRoute:
+    AuthenticatedPulsesupportRouteRouteWithChildren,
   AuthenticatedSkycomptableRouteRoute:
     AuthenticatedSkycomptableRouteRouteWithChildren,
   AuthenticatedStudioproduitRouteRoute:
@@ -6503,6 +6601,7 @@ const rootRouteChildren: RootRouteChildren = {
   CalendskyPlanningRoute: CalendskyPlanningRoute,
   ImmoBienIdRoute: ImmoBienIdRoute,
   PascalGoogleCallbackRoute: PascalGoogleCallbackRoute,
+  PulsesupportCallAgentIdRoute: PulsesupportCallAgentIdRoute,
   QueueflowQSlugRoute: QueueflowQSlugRoute,
   QueueflowTicketEntryIdRoute: QueueflowTicketEntryIdRoute,
   STokenRoute: STokenRoute,

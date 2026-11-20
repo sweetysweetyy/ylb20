@@ -1,5 +1,5 @@
 import { useNavigate } from "@tanstack/react-router";
-import { Activity, FileScan, Cloud, ListChecks, CalendarDays, FileText, Sheet, Mail, Home, Workflow, Users, Bot, ReceiptEuro, Mic, StickyNote, Briefcase, FolderKanban, NotebookPen, ShoppingCart, Calculator, Presentation, Linkedin, BriefcaseBusiness, Radar, QrCode, Building2, Sofa, GalleryHorizontal, Camera, Globe, LayoutTemplate, type LucideIcon } from "lucide-react";
+import { Activity, Headphones, FileScan, Cloud, ListChecks, CalendarDays, FileText, Sheet, Mail, Home, Workflow, Users, Bot, ReceiptEuro, Mic, StickyNote, Briefcase, FolderKanban, NotebookPen, ShoppingCart, Calculator, Presentation, Linkedin, BriefcaseBusiness, Radar, QrCode, Building2, Sofa, GalleryHorizontal, Camera, Globe, LayoutTemplate, type LucideIcon } from "lucide-react";
 
 export type SkyApp = { id: string; name: string; desc: string; to: string; icon: LucideIcon; color: string };
 
@@ -37,6 +37,7 @@ export const SKY_APPS: SkyApp[] = [
   { id: "odooweb", name: "ODOO SITE", desc: "Site web Odoo par l’IA", to: "/odooweb/dashboard", icon: Globe, color: "#c0502e" },
   { id: "pageweaver", name: "PAGE WEAVER", desc: "Maquettes de pages web par l’IA", to: "/pageweaver/dashboard", icon: LayoutTemplate, color: "#d9662b" },
   { id: "pulse", name: "PULSE", desc: "Santé économique Odoo et analyste vocal", to: "/pulse", icon: Activity, color: "#2fc4a8" },
+  { id: "pulsesupport", name: "PULSESUPPORT", desc: "Support client vocal relié à Odoo", to: "/pulsesupport/dashboard", icon: Headphones, color: "#2f7f86" },
   { id: "facturodoo", name: "FACTURODOO", desc: "Factures fournisseurs PDF vers Odoo", to: "/facturodoo", icon: FileScan, color: "#c47a3a" },
   { id: "queueflow", name: "QUEUE FLOW", desc: "Salle d’attente virtuelle", to: "/queueflow/dashboard", icon: QrCode, color: "#14b8a6" },
   { id: "financierplan", name: "FINANCIERPLAN", desc: "Prévisionnel financier IA", to: "/financierplan/dashboard", icon: FileText, color: "#8b5cf6" },

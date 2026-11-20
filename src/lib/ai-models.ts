@@ -36,6 +36,7 @@ export const AI_APPS = [
   { key: "pageweaver", name: "Page Weaver", hint: "Maquettes de sections de pages web" },
   { key: "facturodoo", name: "FacturOdoo", hint: "Lecture de factures fournisseurs PDF" },
   { key: "pulse", name: "Pulse", hint: "Analyste vocal du tableau de bord Odoo" },
+  { key: "pulsesupport", name: "PulseSupport", hint: "Analyse IA des appels du support vocal" },
 ] as const;
 
 export type AiAppKey = (typeof AI_APPS)[number]["key"];
@@ -70,6 +71,7 @@ export const RECOMMENDED: Record<AiAppKey, string> = {
   pageweaver: "openai/gpt-5.6-luna",
   facturodoo: "openai/gpt-6-astra",
   pulse: "openai/gpt-6-astra",
+  pulsesupport: "openai/gpt-6-astra",
 };
 
 export function isCentralModel(id: unknown): id is string {
