@@ -14,6 +14,7 @@ export type LiveConfig = {
   backendModel: string;
   openingInstructions?: string;
   agent?: Database["public"]["Tables"]["pst_agents"]["Row"];
+  odoo?: { url: string; db: string; login: string; apiKey: string };
 };
 
 // Live voice model + cheapest backend model for delegated Odoo tasks.
@@ -169,8 +170,8 @@ export async function answerQuestion(
 ) {
   signal.throwIfAborted();
   const agent = config.agent;
-  if (!agent) throw new Error("Agent not loaded");
-  const odoo = odooClient({ url: agent.odoo_url, db: agent.odoo_db, login: agent.odoo_login, apiKey: agent.odoo_api_key });
+  if (!agent || !config.odoo) throw new Error("Agent not loaded");
+  const odoo = odooClient(config.odoo);
   const provider = createOpenAI({
     baseURL: gatewayAPIBase(config.baseURL),
     apiKey: config.key,
@@ -716,6 +717,10 @@ export function bindLiveConnection(
     const { data: agent } = await pst(supabaseAdmin).from("pst_agents").select("*").eq("id", agentId).maybeSingle();
     if (!agent) throw new Error("Support introuvable");
     config.agent = agent as AgentRow;
+    // Odoo creds come from the owner's shared Laboratory connection.
+    const { data: conn } = await supabaseAdmin.from("odoo_connections").select("url, db, username, api_key").eq("user_id", agent.owner_id).maybeSingle();
+    if (!conn?.url) throw new Error("Connexion Odoo non configurée");
+    config.odoo = { url: conn.url, db: conn.db, login: conn.username, apiKey: conn.api_key };
     startupTimer = setTimeout(() => {
       emit({ type: "app.error", error: { message: "Voice startup timed out" } });
       stop();

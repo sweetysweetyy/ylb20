@@ -8,8 +8,9 @@ export const testOdoo = createServerFn({ method: "POST" })
   .handler(async ({ context }) => {
     const { odooClient, REQUIRED_SCOPES } = await import("./odoo.server");
     const { data: agent } = await pst(context.supabase).from("pst_agents").select("*").eq("owner_id", context.userId).maybeSingle();
-    if (!agent?.odoo_url) return { ok: false, error: "Renseignez d'abord la connexion Odoo.", scopes: [] };
-    const odoo = odooClient({ url: agent.odoo_url, db: agent.odoo_db, login: agent.odoo_login, apiKey: agent.odoo_api_key });
+    const { data: conn } = await context.supabase.from("odoo_connections").select("url, db, username, api_key").eq("user_id", context.userId).maybeSingle();
+    if (!agent || !conn?.url) return { ok: false, error: "Renseignez d'abord la connexion Odoo dans les paramètres du Laboratoire.", scopes: [] };
+    const odoo = odooClient({ url: conn.url, db: conn.db, login: conn.username, apiKey: conn.api_key });
     try {
       await odoo.login();
     } catch (e) {

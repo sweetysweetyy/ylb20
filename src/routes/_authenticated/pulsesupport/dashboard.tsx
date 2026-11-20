@@ -87,7 +87,7 @@ function Dashboard() {
   }
 
   const link = `${origin}/pulsesupport-call/${agent.id}`;
-  const field = (k: "name" | "assistant_name" | "company" | "odoo_url" | "odoo_db" | "odoo_login" | "ticket_model" | "callback_hours", label: string, type = "text") => (
+  const field = (k: "name" | "assistant_name" | "company" | "ticket_model" | "callback_hours", label: string, type = "text") => (
     <div className="space-y-1.5">
       <Label>{label}</Label>
       <Input type={type} value={agent[k]} onChange={(e) => set(k, e.target.value)} />
@@ -125,13 +125,7 @@ function Dashboard() {
 
         <section className="space-y-3 rounded-2xl border bg-card p-6">
           <h2 className="text-lg font-bold">Connexion Odoo</h2>
-          {field("odoo_url", "URL (https://mon-entreprise.odoo.com)")}
-          {field("odoo_db", "Base de données")}
-          {field("odoo_login", "Identifiant (email)")}
-          <div className="space-y-1.5">
-            <Label>Clé API Odoo</Label>
-            <Input type="password" value={agent.odoo_api_key} onChange={(e) => set("odoo_api_key", e.target.value)} />
-          </div>
+          <p className="text-sm text-muted-foreground">Utilise la connexion Odoo des paramètres du Laboratoire.</p>
           {field("ticket_model", "Modèle des tickets SAV")}
           <div className="rounded-xl bg-muted p-3 text-xs">
             <p className="mb-1 font-semibold">Droits Odoo nécessaires pour l'utilisateur :</p>
