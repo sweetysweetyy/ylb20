@@ -6898,10 +6898,6 @@ export type Database = {
           id: string
           instructions: string
           name: string
-          odoo_api_key: string
-          odoo_db: string
-          odoo_login: string
-          odoo_url: string
           owner_id: string
           sav_enabled: boolean
           ticket_model: string
@@ -6916,10 +6912,6 @@ export type Database = {
           id?: string
           instructions?: string
           name?: string
-          odoo_api_key?: string
-          odoo_db?: string
-          odoo_login?: string
-          odoo_url?: string
           owner_id: string
           sav_enabled?: boolean
           ticket_model?: string
@@ -6934,10 +6926,6 @@ export type Database = {
           id?: string
           instructions?: string
           name?: string
-          odoo_api_key?: string
-          odoo_db?: string
-          odoo_login?: string
-          odoo_url?: string
           owner_id?: string
           sav_enabled?: boolean
           ticket_model?: string
