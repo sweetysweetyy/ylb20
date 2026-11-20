@@ -6888,6 +6888,110 @@ export type Database = {
         }
         Relationships: []
       }
+      pst_agents: {
+        Row: {
+          assistant_name: string
+          callback_enabled: boolean
+          callback_hours: string
+          company: string
+          created_at: string
+          id: string
+          instructions: string
+          name: string
+          odoo_api_key: string
+          odoo_db: string
+          odoo_login: string
+          odoo_url: string
+          owner_id: string
+          sav_enabled: boolean
+          ticket_model: string
+          updated_at: string
+        }
+        Insert: {
+          assistant_name?: string
+          callback_enabled?: boolean
+          callback_hours?: string
+          company?: string
+          created_at?: string
+          id?: string
+          instructions?: string
+          name?: string
+          odoo_api_key?: string
+          odoo_db?: string
+          odoo_login?: string
+          odoo_url?: string
+          owner_id: string
+          sav_enabled?: boolean
+          ticket_model?: string
+          updated_at?: string
+        }
+        Update: {
+          assistant_name?: string
+          callback_enabled?: boolean
+          callback_hours?: string
+          company?: string
+          created_at?: string
+          id?: string
+          instructions?: string
+          name?: string
+          odoo_api_key?: string
+          odoo_db?: string
+          odoo_login?: string
+          odoo_url?: string
+          owner_id?: string
+          sav_enabled?: boolean
+          ticket_model?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      pst_calls: {
+        Row: {
+          actions: Json
+          agent_id: string
+          ai_summary: string | null
+          created_at: string
+          customer_name: string | null
+          id: string
+          outcome: string | null
+          owner_id: string
+          partner_id: number | null
+          transcript: string
+        }
+        Insert: {
+          actions?: Json
+          agent_id: string
+          ai_summary?: string | null
+          created_at?: string
+          customer_name?: string | null
+          id?: string
+          outcome?: string | null
+          owner_id: string
+          partner_id?: number | null
+          transcript?: string
+        }
+        Update: {
+          actions?: Json
+          agent_id?: string
+          ai_summary?: string | null
+          created_at?: string
+          customer_name?: string | null
+          id?: string
+          outcome?: string | null
+          owner_id?: string
+          partner_id?: number | null
+          transcript?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "pst_calls_agent_id_fkey"
+            columns: ["agent_id"]
+            isOneToOne: false
+            referencedRelation: "pst_agents"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       pw_projects: {
         Row: {
           brief: string
@@ -11394,6 +11498,15 @@ export type Database = {
       noject_recompute_project_progress: {
         Args: { _project_id: string }
         Returns: undefined
+      }
+      pst_get_public_agent: {
+        Args: { _id: string }
+        Returns: {
+          assistant_name: string
+          company: string
+          id: string
+          name: string
+        }[]
       }
       skc_add_company_member: {
         Args: { p_company_id: string; p_email: string; p_role: string }
